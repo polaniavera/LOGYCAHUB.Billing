@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LOGYCAHUB.Billing.API", "LOGYCAHUB.Billing\LOGYCAHUB.Billing.API.csproj", "{790C07E5-200D-4B27-B98E-3D7509B59FA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LOGYCAHUB.Billing.DAL", "LOGYCAHUB.Billing.DAL\LOGYCAHUB.Billing.DAL.csproj", "{912CCA82-DA1A-403D-BBF2-D64E4063BDC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LOGYCAHUB.Billing.Entities", "LOGYCAHUB.Billing.Entities\LOGYCAHUB.Billing.Entities.csproj", "{B4FFB275-32BE-416A-A482-0F08B7C6261B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LOGYCAHUB.Billing.BLL", "LOGYCAHUB.Billing.BLL\LOGYCAHUB.Billing.BLL.csproj", "{432C29A5-9540-474B-A644-029BBD1DAD72}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{790C07E5-200D-4B27-B98E-3D7509B59FA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{790C07E5-200D-4B27-B98E-3D7509B59FA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{790C07E5-200D-4B27-B98E-3D7509B59FA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{790C07E5-200D-4B27-B98E-3D7509B59FA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{912CCA82-DA1A-403D-BBF2-D64E4063BDC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{912CCA82-DA1A-403D-BBF2-D64E4063BDC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{912CCA82-DA1A-403D-BBF2-D64E4063BDC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{912CCA82-DA1A-403D-BBF2-D64E4063BDC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4FFB275-32BE-416A-A482-0F08B7C6261B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4FFB275-32BE-416A-A482-0F08B7C6261B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4FFB275-32BE-416A-A482-0F08B7C6261B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4FFB275-32BE-416A-A482-0F08B7C6261B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{432C29A5-9540-474B-A644-029BBD1DAD72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{432C29A5-9540-474B-A644-029BBD1DAD72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{432C29A5-9540-474B-A644-029BBD1DAD72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{432C29A5-9540-474B-A644-029BBD1DAD72}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://190.131.243.242:8080/tfs/logycacollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = LOGYCAHUB.Billing.BLL\\LOGYCAHUB.Billing.BLL.csproj
+		SccProjectName1 = LOGYCAHUB/LOGYCAHUB.Billing/LOGYCAHUB.Billing.BLL
+		SccLocalPath1 = LOGYCAHUB.Billing.BLL
+		SccProjectUniqueName2 = LOGYCAHUB.Billing.DAL\\LOGYCAHUB.Billing.DAL.csproj
+		SccProjectName2 = LOGYCAHUB/LOGYCAHUB.Billing/LOGYCAHUB.Billing.DAL
+		SccLocalPath2 = LOGYCAHUB.Billing.DAL
+		SccProjectUniqueName3 = LOGYCAHUB.Billing.Entities\\LOGYCAHUB.Billing.Entities.csproj
+		SccProjectName3 = LOGYCAHUB/LOGYCAHUB.Billing/LOGYCAHUB.Billing.Entities
+		SccLocalPath3 = LOGYCAHUB.Billing.Entities
+		SccProjectUniqueName4 = LOGYCAHUB.Billing\\LOGYCAHUB.Billing.API.csproj
+		SccProjectName4 = LOGYCAHUB/LOGYCAHUB.Billing/LOGYCAHUB.Billing
+		SccLocalPath4 = LOGYCAHUB.Billing
+	EndGlobalSection
+EndGlobal

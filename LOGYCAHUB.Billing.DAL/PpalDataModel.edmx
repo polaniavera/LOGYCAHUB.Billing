@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CABASNET_PPAL_CO_V1_0Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CRM_EMPRESA">
+          <Key>
+            <PropertyRef Name="ID_EMPRESA" />
+          </Key>
+          <Property Name="GGUID_EMPRESA" Type="binary" MaxLength="16" Nullable="false" />
+          <Property Name="ID_EMPRESA" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CANTIDADCODIGOS" Type="int" />
+          <Property Name="IND_ESTADO_EMPRESA" Type="bit" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="datetime" Nullable="false" />
+          <Property Name="FECHA_MODIFICACION" Type="datetime" />
+          <Property Name="USUARIO" Type="varchar" MaxLength="50" />
+          <Property Name="CONTRASENA" Type="varchar" MaxLength="50" />
+          <Property Name="IND_DEVOLUCION" Type="bit" />
+          <Property Name="IND_ANTIGUO" Type="bit" />
+          <Property Name="ID_ESTADO_GLN" Type="int" />
+          <Property Name="IND_EN_PROCESO" Type="bit" />
+          <Property Name="IND_SOPORTE_VIGENTE" Type="bit" />
+        </EntityType>
+        <EntityType Name="EMPRESA">
+          <Key>
+            <PropertyRef Name="ID_EMPRESA" />
+          </Key>
+          <Property Name="ID_EMPRESA" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_ROL" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="NIT" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="EAN_EMPRESA_GLN" Type="varchar" MaxLength="35" />
+          <Property Name="ID_TIPO_CANAL" Type="int" Nullable="false" />
+          <Property Name="BUZON_X_CANAL" Type="varchar" MaxLength="150" />
+          <Property Name="PASSWORD_VAN" Type="varchar" MaxLength="35" />
+          <Property Name="ID_FORMATO_DOCUMENTO" Type="int" Nullable="false" />
+          <Property Name="ID_CIUDAD" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="ACTIVO" Type="bit" Nullable="false" />
+          <Property Name="CONTADOR_ID_ARTICULO" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CONTADOR_ALC_ID_GRUPO_DESCUENTO" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CONTADOR_ID_TIPO_CLIENTE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CONTADOR_ID_PUNTOVENTA" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="URL" Type="varchar" MaxLength="50" />
+          <Property Name="IMG_EMPRESA" Type="varchar" MaxLength="100" />
+          <Property Name="CONTACTO_EMP" Type="varchar" MaxLength="35" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="35" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="100" />
+          <Property Name="FAX" Type="varchar" MaxLength="35" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="150" />
+          <Property Name="EMAIL_CONTACTO" Type="varchar" MaxLength="150" />
+          <Property Name="BLOQUEADO" Type="bit" Nullable="false" />
+          <Property Name="COPIADO" Type="bit" />
+          <Property Name="CONTADOR_ID_COMPRADOR" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID_PAIS" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="VECTORIZACION" Type="bit" Nullable="false" />
+          <Property Name="GLN_BUZON" Type="varchar" MaxLength="35" />
+          <Property Name="REGISTRO_GDSN" Type="bit" />
+          <Property Name="ENVIAR_FOTOS" Type="bit" />
+          <Property Name="PERMITEENVIOFTP" Type="bit" />
+          <Property Name="REG_GLOBALREGISTRY" Type="bit" />
+          <Property Name="CONTADOR_ID_DOCUMENTO" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="CELULAR" Type="varchar" MaxLength="35" />
+          <Property Name="CODIGO_POSTAL" Type="varchar" MaxLength="35" />
+          <Property Name="BARRIO" Type="varchar" MaxLength="50" />
+          <Property Name="DIRECCION_NUMERO" Type="varchar" MaxLength="50" />
+          <Property Name="DIRECCION_COMPLEMENTO" Type="varchar" MaxLength="50" />
+          <Property Name="ID_TIPO_LINEA" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CRM_EMPRESA_EMPRESA">
+          <End Role="EMPRESA" Type="Self.EMPRESA" Multiplicity="1" />
+          <End Role="CRM_EMPRESA" Type="Self.CRM_EMPRESA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="EMPRESA">
+              <PropertyRef Name="ID_EMPRESA" />
+            </Principal>
+            <Dependent Role="CRM_EMPRESA">
+              <PropertyRef Name="ID_EMPRESA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CABASNET_PPAL_CO_V1_0ModelStoreContainer">
+          <EntitySet Name="CRM_EMPRESA" EntityType="Self.CRM_EMPRESA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPRESA" EntityType="Self.EMPRESA" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CRM_EMPRESA_EMPRESA" Association="Self.FK_CRM_EMPRESA_EMPRESA">
+            <End Role="EMPRESA" EntitySet="EMPRESA" />
+            <End Role="CRM_EMPRESA" EntitySet="CRM_EMPRESA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CABASNET_PPAL_CO_V1_0Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CRM_EMPRESA">
+          <Key>
+            <PropertyRef Name="ID_EMPRESA" />
+          </Key>
+          <Property Name="GGUID_EMPRESA" Type="Binary" MaxLength="16" FixedLength="true" Nullable="false" />
+          <Property Name="ID_EMPRESA" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CANTIDADCODIGOS" Type="Int32" />
+          <Property Name="IND_ESTADO_EMPRESA" Type="Boolean" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="3" />
+          <Property Name="USUARIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CONTRASENA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IND_DEVOLUCION" Type="Boolean" />
+          <Property Name="IND_ANTIGUO" Type="Boolean" />
+          <Property Name="ID_ESTADO_GLN" Type="Int32" />
+          <Property Name="IND_EN_PROCESO" Type="Boolean" />
+          <Property Name="IND_SOPORTE_VIGENTE" Type="Boolean" />
+          <NavigationProperty Name="EMPRESA" Relationship="Self.FK_CRM_EMPRESA_EMPRESA" FromRole="CRM_EMPRESA" ToRole="EMPRESA" />
+        </EntityType>
+        <EntityType Name="EMPRESA">
+          <Key>
+            <PropertyRef Name="ID_EMPRESA" />
+          </Key>
+          <Property Name="ID_EMPRESA" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_ROL" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NIT" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EAN_EMPRESA_GLN" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="ID_TIPO_CANAL" Type="Int32" Nullable="false" />
+          <Property Name="BUZON_X_CANAL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD_VAN" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="ID_FORMATO_DOCUMENTO" Type="Int32" Nullable="false" />
+          <Property Name="ID_CIUDAD" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+          <Property Name="CONTADOR_ID_ARTICULO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CONTADOR_ALC_ID_GRUPO_DESCUENTO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CONTADOR_ID_TIPO_CLIENTE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CONTADOR_ID_PUNTOVENTA" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IMG_EMPRESA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CONTACTO_EMP" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FAX" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL_CONTACTO" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="BLOQUEADO" Type="Boolean" Nullable="false" />
+          <Property Name="COPIADO" Type="Boolean" />
+          <Property Name="CONTADOR_ID_COMPRADOR" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID_PAIS" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VECTORIZACION" Type="Boolean" Nullable="false" />
+          <Property Name="GLN_BUZON" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="REGISTRO_GDSN" Type="Boolean" />
+          <Property Name="ENVIAR_FOTOS" Type="Boolean" />
+          <Property Name="PERMITEENVIOFTP" Type="Boolean" />
+          <Property Name="REG_GLOBALREGISTRY" Type="Boolean" />
+          <Property Name="CONTADOR_ID_DOCUMENTO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CELULAR" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="CODIGO_POSTAL" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="BARRIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION_NUMERO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION_COMPLEMENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_TIPO_LINEA" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="CRM_EMPRESA" Relationship="Self.FK_CRM_EMPRESA_EMPRESA" FromRole="EMPRESA" ToRole="CRM_EMPRESA" />
+        </EntityType>
+        <Association Name="FK_CRM_EMPRESA_EMPRESA">
+          <End Role="EMPRESA" Type="Self.EMPRESA" Multiplicity="1" />
+          <End Role="CRM_EMPRESA" Type="Self.CRM_EMPRESA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="EMPRESA">
+              <PropertyRef Name="ID_EMPRESA" />
+            </Principal>
+            <Dependent Role="CRM_EMPRESA">
+              <PropertyRef Name="ID_EMPRESA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CABASNET_PPAL_CO_V1_0Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CRM_EMPRESA" EntityType="Self.CRM_EMPRESA" />
+          <EntitySet Name="EMPRESA" EntityType="Self.EMPRESA" />
+          <AssociationSet Name="FK_CRM_EMPRESA_EMPRESA" Association="Self.FK_CRM_EMPRESA_EMPRESA">
+            <End Role="EMPRESA" EntitySet="EMPRESA" />
+            <End Role="CRM_EMPRESA" EntitySet="CRM_EMPRESA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CABASNET_PPAL_CO_V1_0ModelStoreContainer" CdmEntityContainer="CABASNET_PPAL_CO_V1_0Entities">
+          <EntitySetMapping Name="CRM_EMPRESA">
+            <EntityTypeMapping TypeName="CABASNET_PPAL_CO_V1_0Model.CRM_EMPRESA">
+              <MappingFragment StoreEntitySet="CRM_EMPRESA">
+                <ScalarProperty Name="GGUID_EMPRESA" ColumnName="GGUID_EMPRESA" />
+                <ScalarProperty Name="ID_EMPRESA" ColumnName="ID_EMPRESA" />
+                <ScalarProperty Name="CANTIDADCODIGOS" ColumnName="CANTIDADCODIGOS" />
+                <ScalarProperty Name="IND_ESTADO_EMPRESA" ColumnName="IND_ESTADO_EMPRESA" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
+                <ScalarProperty Name="IND_DEVOLUCION" ColumnName="IND_DEVOLUCION" />
+                <ScalarProperty Name="IND_ANTIGUO" ColumnName="IND_ANTIGUO" />
+                <ScalarProperty Name="ID_ESTADO_GLN" ColumnName="ID_ESTADO_GLN" />
+                <ScalarProperty Name="IND_EN_PROCESO" ColumnName="IND_EN_PROCESO" />
+                <ScalarProperty Name="IND_SOPORTE_VIGENTE" ColumnName="IND_SOPORTE_VIGENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPRESA">
+            <EntityTypeMapping TypeName="CABASNET_PPAL_CO_V1_0Model.EMPRESA">
+              <MappingFragment StoreEntitySet="EMPRESA">
+                <ScalarProperty Name="ID_EMPRESA" ColumnName="ID_EMPRESA" />
+                <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="NIT" ColumnName="NIT" />
+                <ScalarProperty Name="EAN_EMPRESA_GLN" ColumnName="EAN_EMPRESA_GLN" />
+                <ScalarProperty Name="ID_TIPO_CANAL" ColumnName="ID_TIPO_CANAL" />
+                <ScalarProperty Name="BUZON_X_CANAL" ColumnName="BUZON_X_CANAL" />
+                <ScalarProperty Name="PASSWORD_VAN" ColumnName="PASSWORD_VAN" />
+                <ScalarProperty Name="ID_FORMATO_DOCUMENTO" ColumnName="ID_FORMATO_DOCUMENTO" />
+                <ScalarProperty Name="ID_CIUDAD" ColumnName="ID_CIUDAD" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+                <ScalarProperty Name="CONTADOR_ID_ARTICULO" ColumnName="CONTADOR_ID_ARTICULO" />
+                <ScalarProperty Name="CONTADOR_ALC_ID_GRUPO_DESCUENTO" ColumnName="CONTADOR_ALC_ID_GRUPO_DESCUENTO" />
+                <ScalarProperty Name="CONTADOR_ID_TIPO_CLIENTE" ColumnName="CONTADOR_ID_TIPO_CLIENTE" />
+                <ScalarProperty Name="CONTADOR_ID_PUNTOVENTA" ColumnName="CONTADOR_ID_PUNTOVENTA" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="IMG_EMPRESA" ColumnName="IMG_EMPRESA" />
+                <ScalarProperty Name="CONTACTO_EMP" ColumnName="CONTACTO_EMP" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="EMAIL_CONTACTO" ColumnName="EMAIL_CONTACTO" />
+                <ScalarProperty Name="BLOQUEADO" ColumnName="BLOQUEADO" />
+                <ScalarProperty Name="COPIADO" ColumnName="COPIADO" />
+                <ScalarProperty Name="CONTADOR_ID_COMPRADOR" ColumnName="CONTADOR_ID_COMPRADOR" />
+                <ScalarProperty Name="ID_PAIS" ColumnName="ID_PAIS" />
+                <ScalarProperty Name="VECTORIZACION" ColumnName="VECTORIZACION" />
+                <ScalarProperty Name="GLN_BUZON" ColumnName="GLN_BUZON" />
+                <ScalarProperty Name="REGISTRO_GDSN" ColumnName="REGISTRO_GDSN" />
+                <ScalarProperty Name="ENVIAR_FOTOS" ColumnName="ENVIAR_FOTOS" />
+                <ScalarProperty Name="PERMITEENVIOFTP" ColumnName="PERMITEENVIOFTP" />
+                <ScalarProperty Name="REG_GLOBALREGISTRY" ColumnName="REG_GLOBALREGISTRY" />
+                <ScalarProperty Name="CONTADOR_ID_DOCUMENTO" ColumnName="CONTADOR_ID_DOCUMENTO" />
+                <ScalarProperty Name="CELULAR" ColumnName="CELULAR" />
+                <ScalarProperty Name="CODIGO_POSTAL" ColumnName="CODIGO_POSTAL" />
+                <ScalarProperty Name="BARRIO" ColumnName="BARRIO" />
+                <ScalarProperty Name="DIRECCION_NUMERO" ColumnName="DIRECCION_NUMERO" />
+                <ScalarProperty Name="DIRECCION_COMPLEMENTO" ColumnName="DIRECCION_COMPLEMENTO" />
+                <ScalarProperty Name="ID_TIPO_LINEA" ColumnName="ID_TIPO_LINEA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

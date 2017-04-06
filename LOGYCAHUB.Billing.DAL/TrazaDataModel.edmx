@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CABASNET_TRAZABILIDADModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AUDIT_MAESTRO">
+          <Key>
+            <PropertyRef Name="id_Trazabilidad" />
+          </Key>
+          <Property Name="id_Trazabilidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreDocumentoOriginal" Type="varchar" MaxLength="800" />
+          <Property Name="nombreDocumento" Type="varchar" MaxLength="800" />
+          <Property Name="bgm" Type="varchar" MaxLength="100" />
+          <Property Name="glnProv" Type="varchar" MaxLength="50" />
+          <Property Name="glnComer" Type="varchar" MaxLength="50" />
+          <Property Name="fechaLlegada" Type="datetime" />
+          <Property Name="id_Formato" Type="int" />
+          <Property Name="id_Pais" Type="varchar" MaxLength="10" />
+          <Property Name="recepcion" Type="bit" />
+          <Property Name="validarXMLInt" Type="bit" />
+          <Property Name="procesamiento" Type="bit" />
+          <Property Name="moduloCadena" Type="bit" />
+          <Property Name="generacion" Type="bit" />
+          <Property Name="confirmacion" Type="bit" />
+          <Property Name="fechaUltimoEstado" Type="datetime" />
+          <Property Name="descripcionEstado" Type="varchar" MaxLength="800" />
+          <Property Name="linkDescarga" Type="varchar" MaxLength="800" />
+          <Property Name="linkError" Type="varchar" MaxLength="800" />
+          <Property Name="fechaEnvio" Type="datetime" />
+          <Property Name="estadoEnvio" Type="varchar" MaxLength="50" />
+          <Property Name="sendRef" Type="varchar" MaxLength="15" />
+          <Property Name="envioExitoso" Type="bit" />
+          <Property Name="error" Type="varchar" MaxLength="50" />
+          <Property Name="buzonDest" Type="varchar" MaxLength="50" />
+          <Property Name="estadoCadena" Type="varchar" MaxLength="50" />
+          <Property Name="id_Causal" Type="int" />
+          <Property Name="otraCausal" Type="varchar" MaxLength="50" />
+          <Property Name="revisado" Type="bit" />
+          <Property Name="fechaAplicacion" Type="datetime" />
+          <Property Name="contadorRecepcion" Type="int" />
+          <Property Name="idEstado" Type="int" />
+          <Property Name="idErrorProceso" Type="varchar" MaxLength="50" />
+          <Property Name="ID_TIPO_LINEA" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CABASNET_TRAZABILIDAD.dbo.MESSAGES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MESSAGES">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="MessageCod" />
+            <PropertyRef Name="Method" />
+            <PropertyRef Name="MessageDetail" />
+            <PropertyRef Name="State" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MessageCod" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Method" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="MessageDetail" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="State" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRICATS_X_EMPRESA">
+          <Key>
+            <PropertyRef Name="EAN_EMPRESA_GLN" />
+            <PropertyRef Name="ID_EMPRESA" />
+            <PropertyRef Name="ID_PAIS" />
+          </Key>
+          <Property Name="EAN_EMPRESA_GLN" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="ID_EMPRESA" Type="int" Nullable="false" />
+          <Property Name="ID_PAIS" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NUM_PRICATS_COMPRADOS" Type="int" Nullable="false" />
+          <Property Name="NUM_PRICATS_PROCESADOS" Type="int" Nullable="false" />
+          <Property Name="FECHA_EXPIRACION" Type="datetime" />
+          <Property Name="DESCONTAR_PRICAT" Type="bit" />
+          <Property Name="FECHA_ACTUALIZACION" Type="datetime" />
+          <Property Name="FECHA_VENCIMIENTO_ORDEN" Type="datetime" />
+          <Property Name="ID_ORDEN_COMPRA" Type="int" />
+        </EntityType>
+        <EntityType Name="TOKENS">
+          <Key>
+            <PropertyRef Name="ID_TOKEN" />
+          </Key>
+          <Property Name="ID_TOKEN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_USER" Type="int" Nullable="false" />
+          <Property Name="AUTH_TOKEN" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="EMISION" Type="datetime" Nullable="false" />
+          <Property Name="EXPIRACION" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_API">
+          <Key>
+            <PropertyRef Name="ID_USER" />
+          </Key>
+          <Property Name="ID_USER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STR_USER" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PASSWORD_USER" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NAME_USER" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Tokens_User">
+          <End Role="USER_API" Type="Self.USER_API" Multiplicity="1" />
+          <End Role="TOKENS" Type="Self.TOKENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_API">
+              <PropertyRef Name="ID_USER" />
+            </Principal>
+            <Dependent Role="TOKENS">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CABASNET_TRAZABILIDADModelStoreContainer">
+          <EntitySet Name="AUDIT_MAESTRO" EntityType="Self.AUDIT_MAESTRO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRICATS_X_EMPRESA" EntityType="Self.PRICATS_X_EMPRESA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOKENS" EntityType="Self.TOKENS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_API" EntityType="Self.USER_API" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MESSAGES" EntityType="Self.MESSAGES" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MESSAGES].[Id] AS [Id], 
+    [MESSAGES].[MessageCod] AS [MessageCod], 
+    [MESSAGES].[Method] AS [Method], 
+    [MESSAGES].[MessageDetail] AS [MessageDetail], 
+    [MESSAGES].[State] AS [State]
+    FROM [dbo].[MESSAGES] AS [MESSAGES]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Tokens_User" Association="Self.FK_Tokens_User">
+            <End Role="USER_API" EntitySet="USER_API" />
+            <End Role="TOKENS" EntitySet="TOKENS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CABASNET_TRAZABILIDADModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AUDIT_MAESTRO">
+          <Key>
+            <PropertyRef Name="id_Trazabilidad" />
+          </Key>
+          <Property Name="id_Trazabilidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreDocumentoOriginal" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="nombreDocumento" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="bgm" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="glnProv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="glnComer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fechaLlegada" Type="DateTime" Precision="3" />
+          <Property Name="id_Formato" Type="Int32" />
+          <Property Name="id_Pais" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="recepcion" Type="Boolean" />
+          <Property Name="validarXMLInt" Type="Boolean" />
+          <Property Name="procesamiento" Type="Boolean" />
+          <Property Name="moduloCadena" Type="Boolean" />
+          <Property Name="generacion" Type="Boolean" />
+          <Property Name="confirmacion" Type="Boolean" />
+          <Property Name="fechaUltimoEstado" Type="DateTime" Precision="3" />
+          <Property Name="descripcionEstado" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="linkDescarga" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="linkError" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="fechaEnvio" Type="DateTime" Precision="3" />
+          <Property Name="estadoEnvio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sendRef" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="envioExitoso" Type="Boolean" />
+          <Property Name="error" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="buzonDest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estadoCadena" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_Causal" Type="Int32" />
+          <Property Name="otraCausal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="revisado" Type="Boolean" />
+          <Property Name="fechaAplicacion" Type="DateTime" Precision="3" />
+          <Property Name="contadorRecepcion" Type="Int32" />
+          <Property Name="idEstado" Type="Int32" />
+          <Property Name="idErrorProceso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_TIPO_LINEA" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRICATS_X_EMPRESA">
+          <Key>
+            <PropertyRef Name="EAN_EMPRESA_GLN" />
+            <PropertyRef Name="ID_EMPRESA" />
+            <PropertyRef Name="ID_PAIS" />
+          </Key>
+          <Property Name="EAN_EMPRESA_GLN" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_EMPRESA" Type="Int32" Nullable="false" />
+          <Property Name="ID_PAIS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NUM_PRICATS_COMPRADOS" Type="Int32" Nullable="false" />
+          <Property Name="NUM_PRICATS_PROCESADOS" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_EXPIRACION" Type="DateTime" Precision="3" />
+          <Property Name="DESCONTAR_PRICAT" Type="Boolean" />
+          <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Precision="3" />
+          <Property Name="FECHA_VENCIMIENTO_ORDEN" Type="DateTime" Precision="3" />
+          <Property Name="ID_ORDEN_COMPRA" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TOKENS">
+          <Key>
+            <PropertyRef Name="ID_TOKEN" />
+          </Key>
+          <Property Name="ID_TOKEN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_USER" Type="Int32" Nullable="false" />
+          <Property Name="AUTH_TOKEN" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EMISION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EXPIRACION" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="USER_API" Relationship="Self.FK_Tokens_User" FromRole="TOKENS" ToRole="USER_API" />
+        </EntityType>
+        <EntityType Name="USER_API">
+          <Key>
+            <PropertyRef Name="ID_USER" />
+          </Key>
+          <Property Name="ID_USER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STR_USER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PASSWORD_USER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NAME_USER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TOKENS" Relationship="Self.FK_Tokens_User" FromRole="USER_API" ToRole="TOKENS" />
+        </EntityType>
+        <EntityType Name="MESSAGES">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="MessageCod" />
+            <PropertyRef Name="Method" />
+            <PropertyRef Name="MessageDetail" />
+            <PropertyRef Name="State" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MessageCod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Method" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MessageDetail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Tokens_User">
+          <End Role="USER_API" Type="Self.USER_API" Multiplicity="1" />
+          <End Role="TOKENS" Type="Self.TOKENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_API">
+              <PropertyRef Name="ID_USER" />
+            </Principal>
+            <Dependent Role="TOKENS">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CABASNET_TRAZABILIDADEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AUDIT_MAESTRO" EntityType="Self.AUDIT_MAESTRO" />
+          <EntitySet Name="PRICATS_X_EMPRESA" EntityType="Self.PRICATS_X_EMPRESA" />
+          <EntitySet Name="TOKENS" EntityType="Self.TOKENS" />
+          <EntitySet Name="USER_API" EntityType="Self.USER_API" />
+          <EntitySet Name="MESSAGES" EntityType="Self.MESSAGES" />
+          <AssociationSet Name="FK_Tokens_User" Association="Self.FK_Tokens_User">
+            <End Role="USER_API" EntitySet="USER_API" />
+            <End Role="TOKENS" EntitySet="TOKENS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CABASNET_TRAZABILIDADModelStoreContainer" CdmEntityContainer="CABASNET_TRAZABILIDADEntities">
+          <EntitySetMapping Name="AUDIT_MAESTRO">
+            <EntityTypeMapping TypeName="CABASNET_TRAZABILIDADModel.AUDIT_MAESTRO">
+              <MappingFragment StoreEntitySet="AUDIT_MAESTRO">
+                <ScalarProperty Name="id_Trazabilidad" ColumnName="id_Trazabilidad" />
+                <ScalarProperty Name="nombreDocumentoOriginal" ColumnName="nombreDocumentoOriginal" />
+                <ScalarProperty Name="nombreDocumento" ColumnName="nombreDocumento" />
+                <ScalarProperty Name="bgm" ColumnName="bgm" />
+                <ScalarProperty Name="glnProv" ColumnName="glnProv" />
+                <ScalarProperty Name="glnComer" ColumnName="glnComer" />
+                <ScalarProperty Name="fechaLlegada" ColumnName="fechaLlegada" />
+                <ScalarProperty Name="id_Formato" ColumnName="id_Formato" />
+                <ScalarProperty Name="id_Pais" ColumnName="id_Pais" />
+                <ScalarProperty Name="recepcion" ColumnName="recepcion" />
+                <ScalarProperty Name="validarXMLInt" ColumnName="validarXMLInt" />
+                <ScalarProperty Name="procesamiento" ColumnName="procesamiento" />
+                <ScalarProperty Name="moduloCadena" ColumnName="moduloCadena" />
+                <ScalarProperty Name="generacion" ColumnName="generacion" />
+                <ScalarProperty Name="confirmacion" ColumnName="confirmacion" />
+                <ScalarProperty Name="fechaUltimoEstado" ColumnName="fechaUltimoEstado" />
+                <ScalarProperty Name="descripcionEstado" ColumnName="descripcionEstado" />
+                <ScalarProperty Name="linkDescarga" ColumnName="linkDescarga" />
+                <ScalarProperty Name="linkError" ColumnName="linkError" />
+                <ScalarProperty Name="fechaEnvio" ColumnName="fechaEnvio" />
+                <ScalarProperty Name="estadoEnvio" ColumnName="estadoEnvio" />
+                <ScalarProperty Name="sendRef" ColumnName="sendRef" />
+                <ScalarProperty Name="envioExitoso" ColumnName="envioExitoso" />
+                <ScalarProperty Name="error" ColumnName="error" />
+                <ScalarProperty Name="buzonDest" ColumnName="buzonDest" />
+                <ScalarProperty Name="estadoCadena" ColumnName="estadoCadena" />
+                <ScalarProperty Name="id_Causal" ColumnName="id_Causal" />
+                <ScalarProperty Name="otraCausal" ColumnName="otraCausal" />
+                <ScalarProperty Name="revisado" ColumnName="revisado" />
+                <ScalarProperty Name="fechaAplicacion" ColumnName="fechaAplicacion" />
+                <ScalarProperty Name="contadorRecepcion" ColumnName="contadorRecepcion" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="idErrorProceso" ColumnName="idErrorProceso" />
+                <ScalarProperty Name="ID_TIPO_LINEA" ColumnName="ID_TIPO_LINEA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRICATS_X_EMPRESA">
+            <EntityTypeMapping TypeName="CABASNET_TRAZABILIDADModel.PRICATS_X_EMPRESA">
+              <MappingFragment StoreEntitySet="PRICATS_X_EMPRESA">
+                <ScalarProperty Name="EAN_EMPRESA_GLN" ColumnName="EAN_EMPRESA_GLN" />
+                <ScalarProperty Name="ID_EMPRESA" ColumnName="ID_EMPRESA" />
+                <ScalarProperty Name="ID_PAIS" ColumnName="ID_PAIS" />
+                <ScalarProperty Name="NUM_PRICATS_COMPRADOS" ColumnName="NUM_PRICATS_COMPRADOS" />
+                <ScalarProperty Name="NUM_PRICATS_PROCESADOS" ColumnName="NUM_PRICATS_PROCESADOS" />
+                <ScalarProperty Name="FECHA_EXPIRACION" ColumnName="FECHA_EXPIRACION" />
+                <ScalarProperty Name="DESCONTAR_PRICAT" ColumnName="DESCONTAR_PRICAT" />
+                <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
+                <ScalarProperty Name="FECHA_VENCIMIENTO_ORDEN" ColumnName="FECHA_VENCIMIENTO_ORDEN" />
+                <ScalarProperty Name="ID_ORDEN_COMPRA" ColumnName="ID_ORDEN_COMPRA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOKENS">
+            <EntityTypeMapping TypeName="CABASNET_TRAZABILIDADModel.TOKENS">
+              <MappingFragment StoreEntitySet="TOKENS">
+                <ScalarProperty Name="ID_TOKEN" ColumnName="ID_TOKEN" />
+                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+                <ScalarProperty Name="AUTH_TOKEN" ColumnName="AUTH_TOKEN" />
+                <ScalarProperty Name="EMISION" ColumnName="EMISION" />
+                <ScalarProperty Name="EXPIRACION" ColumnName="EXPIRACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_API">
+            <EntityTypeMapping TypeName="CABASNET_TRAZABILIDADModel.USER_API">
+              <MappingFragment StoreEntitySet="USER_API">
+                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+                <ScalarProperty Name="STR_USER" ColumnName="STR_USER" />
+                <ScalarProperty Name="PASSWORD_USER" ColumnName="PASSWORD_USER" />
+                <ScalarProperty Name="NAME_USER" ColumnName="NAME_USER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MESSAGES">
+            <EntityTypeMapping TypeName="CABASNET_TRAZABILIDADModel.MESSAGES">
+              <MappingFragment StoreEntitySet="MESSAGES">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MessageCod" ColumnName="MessageCod" />
+                <ScalarProperty Name="Method" ColumnName="Method" />
+                <ScalarProperty Name="MessageDetail" ColumnName="MessageDetail" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
